@@ -1,0 +1,28 @@
+//בונה עץ בינארי רנדומלי
+//טענת כניסה: הפונקציה מקבלת את הראש של העץ הבינארי ושלב מקסימלי
+//טענת יציאה: כלום
+  	/**
+	 * 
+	 * @param bt: the binary tree head
+	 * @param levels the max level
+	 */
+  public static void buildRandomTree(BinNode<Integer> bt, int levels)
+	{
+		Random rnd = new Random();
+		
+		if(levels > 1) //run until levels == 1
+		{
+			levels--;
+			bt.setValue(rnd.nextInt(10) +1);
+			bt.setLeft(new BinNode<Integer>(rnd.nextInt(10) +1));
+			bt.setRight(new BinNode<Integer>(rnd.nextInt(10) +1));
+			if(rnd.nextInt(3) +1 != 1) //66% to continue build at the left side
+			{
+				bulidRandomTreeNoLevels(bt.getLeft(), levels);
+			}
+			if(rnd.nextInt(3) +1 != 1)//66% to continue build at the right side
+			{
+				bulidRandomTreeNoLevels(bt.getRight(), levels);
+			}
+		}
+	}
